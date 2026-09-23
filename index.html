@@ -25,7 +25,10 @@
 <header class="site-header transparent" id="site-header">
   <div class="container nav-wrap">
     <a href="index.html" class="logo logo--large">
-      <img src="images/logo.png" alt="Brown Ivory Group" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <picture class="logo-picture">
+        <source media="(max-width: 1024px)" srcset="images/logo-sm.png">
+        <img src="images/logo.png" alt="Brown Ivory Group" class="logo-img" onerror="this.style.display='none'; var t = this.closest('.logo').querySelector('.logo-text'); if(t) t.style.display='block';">
+      </picture>
       <span class="logo-text" style="display:none;">Brown<span>Ivory</span></span>
     </a>
     <nav class="main-nav" aria-label="Main navigation">
@@ -381,7 +384,7 @@
   <div class="container footer-grid">
     <div class="footer-brand">
       <div class="logo logo--footer">
-        <img src="images/logo2.png" alt="Brown Ivory Group" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <img src="images/logo2.png" alt="Brown Ivory Group" class="logo-img" width="120" height="120" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
         <span class="logo-text" style="display:none;">Brown<span>Ivory</span></span>
       </div>
       <p class="footer-tagline">BIG on Ideas, BIG on Growth, BIG on Impact.</p>

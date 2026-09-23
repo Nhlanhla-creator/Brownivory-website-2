@@ -199,25 +199,36 @@ section { padding: 110px 0; }
   text-decoration: none;
   flex-shrink: 0;
 }
-/* Logo enlarged, header height stays the same (logo overflows slightly) */
+/* Logo enlarged, header height stays the same (logo overflows slightly)
 .logo-img {
   display: block;
   height: 64px;
   width: auto;
   max-width: 260px;
   object-fit: contain;
+} */
+ 
+.logo-picture {
+  display: inline-flex;
+  align-items: center;
 }
+
 .logo--large .logo-img {
-  height: 64px;
-  max-width: 260px;
+  width: 80px;
+  aspect-ratio: 1 / 1;
+  transform: scale(1.5);
 }
+
 .logo-text { color: var(--brown-dark); }
 .logo-text span { color: var(--brown); }
 
-/* Footer logo — enlarged, but footer padding stays the same */
-.logo--footer .logo-img {
-  height: 72px;
-  max-width: 280px;
+/* Footer logo — always aspect-square */
+.logo--footer .logo-img,
+.footer-brand .logo-img {
+  width: 120px;
+  height: 120px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
 }
 
@@ -1612,11 +1623,7 @@ section { padding: 110px 0; }
 }
 .footer-brand .logo { color: var(--ivory); margin-bottom: 20px; }
 .footer-brand .logo-text span { color: var(--gold); }
-/* Footer logo bigger, but footer layout/padding unchanged */
-.footer-brand .logo-img {
-  height: 72px;
-  max-width: 280px;
-}
+
 .footer-tagline { color: rgba(241, 232, 214, 0.7); font-size: 0.95rem; max-width: 320px; }
 .footer-col h4 { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.2em; margin-bottom: 20px; }
 .footer-col ul li { margin-bottom: 12px; }
@@ -1669,12 +1676,8 @@ section { padding: 110px 0; }
   .services-tabs-section .service-grid-2,
   .services-tabs-section .process-steps { grid-template-columns: 1fr; }
   .services-tabs-section .service-panel { padding: 40px 32px; }
-}
 
-@media (max-width: 768px) {
-  section { padding: 72px 0; }
-  .container { padding: 0 20px; }
-
+  /* Navigation switches to hamburger style below 1024px */
   .main-nav,
   .nav-cta { display: none; }
   .menu-toggle { display: flex; }
@@ -1688,14 +1691,45 @@ section { padding: 110px 0; }
     padding: 16px 24px;
   }
   .main-nav.open ul { flex-direction: column; gap: 6px; align-items: stretch; }
-  .main-nav.open a { display: block; padding: 14px 20px; color: var(--brown-dark); }
-  .main-nav.open a.active { background: var(--brown-dark); color: var(--peach); }
+  .site-header .main-nav.open a,
+  .site-header.transparent .main-nav.open a {
+    display: block;
+    padding: 14px 20px;
+    color: var(--brown-dark);
+  }
+  .site-header .main-nav.open a:hover,
+  .site-header.transparent .main-nav.open a:hover {
+    background: rgba(46, 31, 18, 0.08);
+    color: var(--brown-dark);
+  }
+  .site-header .main-nav.open a.active,
+  .site-header.transparent .main-nav.open a.active {
+    background: var(--brown-dark);
+    color: var(--peach);
+  }
 
-  /* Slightly smaller logo on mobile, header stays compact */
-  .logo-img,
-  .logo--large .logo-img { height: 52px; max-width: 200px; }
+  /* Header logo switches to logo-sm styling */
+  .site-header .logo--large .logo-img {
+    width: 48px;
+    height: 48px;
+    max-width: 48px;
+    aspect-ratio: 1 / 1;
+    transform: none;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 768px) {
+  section { padding: 72px 0; }
+  .container { padding: 10px; }
+
   .logo--footer .logo-img,
-  .footer-brand .logo-img { height: 60px; max-width: 230px; }
+  .footer-brand .logo-img {
+    width: 110px;
+    height: 110px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+  }
 
   /* Hero — compact on mobile too */
   .hero-dark--compact { min-height: auto; padding: 0; }
@@ -1765,4 +1799,23 @@ section { padding: 110px 0; }
   .capabilities-grid--four,
   .capabilities-grid--three,
   .values-grid--four { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 576px) {
+  /* Small mobile screens header and footer logos */
+  .site-header .logo--large .logo-img {
+    width: 42px;
+    height: 42px;
+    max-width: 42px;
+    aspect-ratio: 1 / 1;
+    transform: none;
+    object-fit: contain;
+  }
+  .logo--footer .logo-img,
+  .footer-brand .logo-img {
+    width: 90px;
+    height: 90px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+  }
 }
